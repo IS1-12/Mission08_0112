@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Enter Task";
 }
-@model NewTask
+@model Tasks
 
 <h1 class="center">@ViewData["Title"]</h1>
 
@@ -9,8 +9,8 @@
     <input asp-for="TaskId" type="hidden" />
     <table class="table table-borderless">
         <tr>
-            <td class="td_right"><label asp-for="Task">Task</label></td>
-            <td class="td_left"><input class="nicer-input" required asp-for="Task" /></td>
+            <td class="td_right"><label asp-for="TaskTitle">Task</label></td>
+            <td class="td_left"><input class="nicer-input" required asp-for="TaskTitle" /></td>
         </tr>
         <tr>
             <td class="td_right"><label asp-for="DueDate">Due Date</label></td>
@@ -33,10 +33,10 @@
             <td class="td_left">
                 <select class="nicer-input" asp-for="CategoryId">
                     <option value="">Select a category</option>
-                    @foreach (Category c in ViewBag.Categories)
+@*                     @foreach (Category c in ViewBag.Categories)
                     {
                         <option value="@c.CategoryId">@c.CategoryName</option>
-                    }
+                    } *@
                 </select>
             </td>
         </tr>
@@ -44,7 +44,7 @@
             <td class="td_right"><label asp-for="Completed">Completed</label></td>
             <td class="td_left">
                 <input type="radio" value="false" checked asp-for="Completed" name="Completed" />No
-                <input type="radio" valude="true" asp-for="Completed"  name="Completed" />Yes
+                <input type="radio" value="true" asp-for="Completed"  name="Completed" />Yes
             </td>
         </tr>
     </table>
