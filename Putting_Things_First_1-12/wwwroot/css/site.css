@@ -20,3 +20,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.td_right    {
+    text-align: right;
+    width: 25%;
+}
+
+.td_left    {
+    text-align: left;
+    width:25%;
+}
+
+.center {
+    text-align: center;
+}

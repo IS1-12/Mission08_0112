@@ -18,7 +18,7 @@ namespace Putting_Things_First_1_12.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult NewTask()
         {
             return View();
         }
