@@ -4,51 +4,59 @@
 @model TaskEntry
 
 <h1 class="center">@ViewData["Title"]</h1>
+ 
+<br /><br />
 
 <form method="post">
     <input asp-for="TaskId" type="hidden" />
-    <table class="table table-borderless">
-        <tr>
-            <td class="td_right"><label asp-for="TaskTitle">Task</label></td>
-            <td class="td_left"><input class="nicer-input" required asp-for="TaskTitle" /></td>
-        </tr>
-        <tr>
-            <td class="td_right"><label asp-for="DueDate">Due Date</label></td>
-            <td class="td_left"><input class="nicer-input" type="date" asp-for="DueDate" /></td>
-        </tr>
-        <tr>
-            <td class="td_right"><label asp-for="Quadrant">Quadrant</label></td>
-            <td class="td_left">
+    <div class="containter">
+        <div class="row gy-3">
+            <div class="col-6 td_right">
+                <label asp-for="TaskTitle">Task</label>
+            </div>
+            <div class="col-6 td_left">
+                <input class="nicer-input" required asp-for="TaskTitle" />
+            </div>
+            <div class="col-6 td_right">
+                <label asp-for="DueDate">Due Date</label>
+            </div>
+            <div class="col-6 td_left">
+                <input class="nicer-input" type="date" asp-for="DueDate" />
+            </div>
+            <div class="col-6 td_right">
+                <label asp-for="Quadrant">Quadrant</label>
+            </div>
+            <div class="col-6 td_left">
                 <select class="nicer-input" required asp-for="Quadrant">
-                    <option value =""></option>
+                    <option value=""></option>
                     <option value="1">Quandrant 1</option>
                     <option value="2">Quandrant 2</option>
                     <option value="3">Quandrant 3</option>
                     <option value="4">Quandrant 4</option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td class="td_right"><label asp-for="CategoryId">Category</label></td>
-            <td class="td_left">
+            </div>
+            <div class="col-6 td_right">
+                <label asp-for="CategoryId">Category</label>
+            </div>
+            <div class="col-6 td_left">
                 <select class="nicer-input" asp-for="CategoryId">
                     <option value="">Select a category</option>
-@*                     @foreach (Category c in ViewBag.Categories)
+                    @*                     @foreach (Category c in ViewBag.Categories)
                     {
-                        <option value="@c.CategoryId">@c.CategoryName</option>
+                    <option value="@c.CategoryId">@c.CategoryName</option>
                     } *@
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td class="td_right"><label asp-for="Completed">Completed</label></td>
-            <td class="td_left">
+            </div>
+            <div class="col-6 td_right">
+                <label asp-for="Completed">Completed</label>
+            </div>
+            <div class="col-6 td_left">
                 <input type="radio" value="false" checked asp-for="Completed" name="Completed" />No
-                <input type="radio" value="true" asp-for="Completed"  name="Completed" />Yes
-            </td>
-        </tr>
-    </table>
-    <div style="align-items:center"><button class="btn btn-center btn-info" type="submit">Submit</button></div>
+                <input type="radio" value="true" asp-for="Completed" name="Completed" />Yes
+            </div>
+            <div class="col-12" style="align-items:center"><button class="btn btn-center btn-info" type="submit">Submit</button></div>
+        </div>
+    </div>
 </form>
 
 <br /><br />
