@@ -10,16 +10,16 @@
     <table class="table table-borderless">
         <tr>
             <td class="td_right"><label asp-for="Task">Task</label></td>
-            <td class="td_left"><input required asp-for="Task"/></td>
+            <td class="td_left"><input class="nicer-input" required asp-for="Task" /></td>
         </tr>
         <tr>
             <td class="td_right"><label asp-for="DueDate">Due Date</label></td>
-            <td class="td_left"><input type="date" asp-for="DueDate" /></td>
+            <td class="td_left"><input class="nicer-input" type="date" asp-for="DueDate" /></td>
         </tr>
         <tr>
             <td class="td_right"><label asp-for="Quadrant">Quadrant</label></td>
             <td class="td_left">
-                <select required asp-for="Quadrant">
+                <select class="nicer-input" required asp-for="Quadrant">
                     <option value =""></option>
                     <option value="1">Quandrant 1</option>
                     <option value="2">Quandrant 2</option>
@@ -31,7 +31,7 @@
         <tr>
             <td class="td_right"><label asp-for="CategoryId">Category</label></td>
             <td class="td_left">
-                <select asp-for="CategoryId">
+                <select class="nicer-input" asp-for="CategoryId">
                     <option value="">Select a category</option>
                     @foreach (Category c in ViewBag.Categories)
                     {
@@ -48,7 +48,7 @@
             </td>
         </tr>
     </table>
-    <div style="align-items:center"><button class="btn-center" type="submit">Submit</button></div>
+    <div style="align-items:center"><button class="btn btn-center btn-info" type="submit">Submit</button></div>
 </form>
 
 <br /><br />
