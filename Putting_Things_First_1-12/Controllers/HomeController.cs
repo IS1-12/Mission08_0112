@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Putting_Things_First_1_12.Models;
+using SQLitePCL;
 using System.Diagnostics;
 
 namespace Putting_Things_First_1_12.Controllers
@@ -15,7 +17,10 @@ namespace Putting_Things_First_1_12.Controllers
 
         public IActionResult Quadrant()
         {
-            return View();
+            var tasks = _context.Tasks
+                .Include(x => x.Category)
+                .ToList();
+            return View(tasks);
         }
 
         public IActionResult NewTask()
