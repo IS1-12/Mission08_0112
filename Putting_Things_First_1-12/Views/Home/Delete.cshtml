@@ -1,4 +1,4 @@
-﻿@model Tasks
+﻿@model Task
 
 <h2>Delete Confirmation</h2>
 
@@ -11,5 +11,5 @@
 
     <input type="hidden" asp-for="TaskId" />
     <button type="submit" class="btn btn-danger">Delete</button>
-    <a class="btn btn-info" asp-controller="Tasks" asp-action="Index">Cancel</a>
+    <a class="btn btn-info" asp-controller="Home" asp-action="Index">Cancel</a>
 </form>
