@@ -1,7 +1,16 @@
+using Putting_Things_First_1_12.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Set up services for context
+builder.Services.AddDbContext<EnterTaskContext>(options =>
+{
+    options.UseSqlite(builder.Configuration["ConnectionStrings:ProjectConnection"]);
+});
 
 var app = builder.Build();
 
