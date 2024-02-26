@@ -13,7 +13,7 @@ namespace Putting_Things_First_1_12.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Quadrant()
         {
             return View();
         }
