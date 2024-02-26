@@ -1,32 +1,54 @@
 ﻿@{
-    ViewData["Title"] = "Add/Edit Task";
+    ViewData["Title"] = "Enter Task";
 }
+@model NewTask
+
 <h1 class="center">@ViewData["Title"]</h1>
 
 <form method="post">
+    <input asp-for="TaskId" type="hidden" />
     <table class="table table-borderless">
         <tr>
-            <td class="td_right"><label>Task</label></td>
-            <td class="td_left"><input required /></td>
+            <td class="td_right"><label asp-for="Task">Task</label></td>
+            <td class="td_left"><input required asp-for="Task"/></td>
         </tr>
         <tr>
-            <td class="td_right"><label>Due Date</label></td>
-            <td class="td_left"><input type="date" /></td>
+            <td class="td_right"><label asp-for="DueDate">Due Date</label></td>
+            <td class="td_left"><input type="date" asp-for="DueDate" /></td>
         </tr>
         <tr>
-            <td class="td_right"><label>Quadrant</label></td>
-            <td class="td_left"><input /></td>
-        </tr>
-        <tr>
-            <td class="td_right"><label>Category</label></td>
-            <td class="td_left"><input /></td>
-        </tr>
-        <tr>
-            <td class="td_right"><label>Completed</label></td>
+            <td class="td_right"><label asp-for="Quadrant">Quadrant</label></td>
             <td class="td_left">
-                <input type="radio" value="false" checked />No
-                <input type="radio" valude="true" />Yes
+                <select required asp-for="Quadrant">
+                    <option value =""></option>
+                    <option value="1">Quandrant 1</option>
+                    <option value="2">Quandrant 2</option>
+                    <option value="3">Quandrant 3</option>
+                    <option value="4">Quandrant 4</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="td_right"><label asp-for="CategoryId">Category</label></td>
+            <td class="td_left">
+                <select asp-for="CategoryId">
+                    <option value="">Select a category</option>
+                    @foreach (Category c in ViewBag.Categories)
+                    {
+                        <option value="@c.CategoryId">@c.CategoryName</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="td_right"><label asp-for="Completed">Completed</label></td>
+            <td class="td_left">
+                <input type="radio" value="false" checked asp-for="Completed" name="Completed" />No
+                <input type="radio" valude="true" asp-for="Completed"  name="Completed" />Yes
             </td>
         </tr>
     </table>
+    <div style="align-items:center"><button class="btn-center" type="submit">Submit</button></div>
 </form>
+
+<br /><br />
