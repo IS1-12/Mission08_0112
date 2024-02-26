@@ -6,11 +6,11 @@ namespace Putting_Things_First_1_12.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private TaskContext _context; // make context usable
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(TaskContext temp) // make context usable
         {
-            _logger = logger;
+            _context = temp;
         }
 
         public IActionResult Quadrant()
