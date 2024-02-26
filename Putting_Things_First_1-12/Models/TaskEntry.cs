@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Putting_Things_First_1_12.Models
 {
-    public class Task
+    public class TaskEntry
     {
         [Key]
         [Required]

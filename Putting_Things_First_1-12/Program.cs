@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Set up services for context
-builder.Services.AddDbContext<TaskContext>(options =>
+builder.Services.AddDbContext<EnterTaskContext>(options =>
 {
     options.UseSqlite(builder.Configuration["ConnectionStrings:ProjectConnection"]);
 });

@@ -6,9 +6,9 @@ namespace Putting_Things_First_1_12.Controllers
 {
     public class HomeController : Controller
     {
-        private TaskContext _context; // make context usable
+        private EnterTaskContext _context; // make context usable
 
-        public HomeController(TaskContext temp) // make context usable
+        public HomeController(EnterTaskContext temp) // make context usable
         {
             _context = temp;
         }

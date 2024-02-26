@@ -2,13 +2,13 @@
 
 namespace Putting_Things_First_1_12.Models
 {
-    public class TaskContext : DbContext
+    public class EnterTaskContext : DbContext
     {
-        public TaskContext(DbContextOptions<TaskContext> options) : base (options) 
+        public EnterTaskContext(DbContextOptions<EnterTaskContext> options) : base (options) 
         {
         }
 
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<TaskEntry> Tasks { get; set; }
         public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
