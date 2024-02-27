@@ -25,6 +25,7 @@ namespace Putting_Things_First_1_12.Controllers
 
         public IActionResult NewTask()
         {
+            ViewBag.Categories = _context.Categories.ToList(); // pass categories table so they can be listed in the dropdown
             return View();
         }
 
@@ -40,6 +41,15 @@ namespace Putting_Things_First_1_12.Controllers
 
         [HttpPost]
         public IActionResult Update(TaskEntry t)
+        {
+            _context.Update(t);
+            _context.SaveChanges();
+
+            return RedirectToAction("Quadrant");
+        }
+
+        [HttpPost]
+        public IActionResult NewTask(TaskEntry t)
         {
             _context.Update(t);
             _context.SaveChanges();
