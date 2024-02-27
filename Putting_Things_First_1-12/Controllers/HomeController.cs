@@ -28,10 +28,42 @@ namespace Putting_Things_First_1_12.Controllers
             return View();
         }
 
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
+        public IActionResult Update(int id)
+        {
+            var taskToEdit = _context.Tasks
+                .Single(x => x.TaskId == id);
+
+            ViewBag.Categories = _context.Categories.ToList();
+
+            return View("NewTask", taskToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult Update(TaskEntry t)
+        {
+            _context.Update(t);
+            _context.SaveChanges();
+
+            return RedirectToAction("Quadrant");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var taskToDelete = _context.Tasks
+                .Where(x => x.TaskId == id)
+                .FirstOrDefault();
+
+            return View(taskToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(TaskEntry task)
+        {
+            _context.Tasks.Remove(task);
+            _context.SaveChanges();
+
+            return RedirectToAction("Quadrant");
+        }
+
     }
 }
