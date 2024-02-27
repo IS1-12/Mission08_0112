@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Putting_Things_First_1_12.Models;
+using SQLitePCL;
 using System.Diagnostics;
 
 namespace Putting_Things_First_1_12.Controllers
@@ -15,18 +17,63 @@ namespace Putting_Things_First_1_12.Controllers
 
         public IActionResult Quadrant()
         {
-            return View();
+            var tasks = _context.Tasks
+                .Include(x => x.Category)
+                .ToList();
+            return View(tasks);
         }
 
         public IActionResult NewTask()
         {
+            ViewBag.Categories = _context.Categories.ToList(); // pass categories table so they can be listed in the dropdown
             return View();
         }
 
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
+        public IActionResult Update(int id)
+        {
+            var taskToEdit = _context.Tasks
+                .Single(x => x.TaskId == id);
+
+            ViewBag.Categories = _context.Categories.ToList();
+
+            return View("NewTask", taskToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult Update(TaskEntry t)
+        {
+            _context.Update(t);
+            _context.SaveChanges();
+
+            return RedirectToAction("Quadrant");
+        }
+
+        [HttpPost]
+        public IActionResult NewTask(TaskEntry t)
+        {
+            _context.Update(t);
+            _context.SaveChanges();
+
+            return RedirectToAction("Quadrant");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var taskToDelete = _context.Tasks
+                .Where(x => x.TaskId == id)
+                .FirstOrDefault();
+
+            return View(taskToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(TaskEntry task)
+        {
+            _context.Tasks.Remove(task);
+            _context.SaveChanges();
+
+            return RedirectToAction("Quadrant");
+        }
+
     }
 }

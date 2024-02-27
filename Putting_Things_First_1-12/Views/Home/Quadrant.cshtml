@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Quadrant Page";
 }
+  @model List<TaskEntry>
 
 <div class="container mt-4">
     <h1 class="text-center mb-4">Time Management Matrix</h1>
@@ -10,7 +11,37 @@
             <div class="p-3 border bg-light">
                 <h2>Quadrant I</h2>
                 <p>Important and Urgent</p>
-                <!-- Display tasks for Quadrant I here -->
+              
+                <table class="table table-bordered">
+                    <thead class="fw-bold">
+                        <tr>
+                            <td>Category</td>
+                            <td>Title</td>
+                            <td>Due Date</td>
+                            <td>Quadrant</td>
+                            <td>Completed?</td>
+
+                        </tr>
+                    </thead>
+                    @foreach (var x in Model)
+                    {
+                        @if (x.Quadrant == 1)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@x.Category?.CategoryName</td>
+                                    <td>@x.TaskTitle</td>
+                                    <td>@x.DueDate</td>
+                                    <td>@x.Quadrant</td>
+                                    <td>@x.Completed</td>
+                                    <td><a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.TaskId">Edit</a></td>
+                                    <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a></td>
+
+                                </tr>
+                            </tbody>
+                        }
+                    }
+                </table>
 
             </div>
         </div>
@@ -20,6 +51,36 @@
                 <h2>Quadrant II</h2>
                 <p>Important but Not Urgent</p>
                 <!-- Display tasks for Quadrant II here -->
+                <table class="table table-bordered">
+                    <thead class="fw-bold">
+                        <tr>
+                            <td>Category</td>
+                            <td>Title</td>
+                            <td>Due Date</td>
+                            <td>Quadrant</td>
+                            <td>Completed?</td>
+
+                        </tr>
+                    </thead>
+                    @foreach (var x in Model)
+                    {
+                        @if (x.Quadrant == 2)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@x.Category?.CategoryName</td>
+                                    <td>@x.TaskTitle</td>
+                                    <td>@x.DueDate</td>
+                                    <td>@x.Quadrant</td>
+                                    <td>@x.Completed</td>
+                                    <td><a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.TaskId">Edit</a></td>
+                                    <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a></td>
+
+                                </tr>
+                            </tbody>
+                        }
+                    }
+                </table>
             </div>
         </div>
         <!-- Quadrant III: Not Important / Urgent -->
@@ -28,6 +89,36 @@
                 <h2>Quadrant III</h2>
                 <p>Not Important but Urgent</p>
                 <!-- Display tasks for Quadrant III here -->
+                <table class="table table-bordered">
+                    <thead class="fw-bold">
+                        <tr>
+                            <td>Category</td>
+                            <td>Title</td>
+                            <td>Due Date</td>
+                            <td>Quadrant</td>
+                            <td>Completed?</td>
+
+                        </tr>
+                    </thead>
+                    @foreach (var x in Model)
+                    {
+                        @if (x.Quadrant == 3)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@x.Category?.CategoryName</td>
+                                    <td>@x.TaskTitle</td>
+                                    <td>@x.DueDate</td>
+                                    <td>@x.Quadrant</td>
+                                    <td>@x.Completed</td>
+                                    <td><a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.TaskId">Edit</a></td>
+                                    <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a></td>
+
+                                </tr>
+                            </tbody>
+                        }
+                    }
+                </table>
             </div>
         </div>
         <!-- Quadrant IV: Not Important / Not Urgent -->
@@ -36,6 +127,36 @@
                 <h2>Quadrant IV</h2>
                 <p>Not Important and Not Urgent</p>
                 <!-- Display tasks for Quadrant IV here -->
+                <table class="table table-bordered">
+                    <thead class="fw-bold">
+                        <tr>
+                            <td>Category</td>
+                            <td>Title</td>
+                            <td>Due Date</td>
+                            <td>Quadrant</td>
+                            <td>Completed?</td>
+
+                        </tr>
+                    </thead>
+                    @foreach (var x in Model)
+                    {
+                        @if (x.Quadrant == 4)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@x.Category?.CategoryName</td>
+                                    <td>@x.TaskTitle</td>
+                                    <td>@x.DueDate</td>
+                                    <td>@x.Quadrant</td>
+                                    <td>@x.Completed</td>
+                                    <td><a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.TaskId">Edit</a></td>
+                                    <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a></td>
+
+                                </tr>
+                            </tbody>
+                        }
+                    }
+                </table>
             </div>
         </div>
     </div>
