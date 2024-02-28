@@ -18,6 +18,7 @@ namespace Putting_Things_First_1_12.Controllers
         public IActionResult Quadrant()
         {
             var tasks = _context.Tasks
+                .Where(b => b.Completed==false)
                 .Include(x => x.Category)
                 .ToList();
             return View(tasks);
