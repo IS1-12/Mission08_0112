@@ -16,7 +16,7 @@ namespace Putting_Things_First_1_12.Models
         public required int Quadrant { get; set; }
 
         [ForeignKey("CategoryId")]
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public Category? Category { get; set; }
 
         public bool? Completed { get; set; }

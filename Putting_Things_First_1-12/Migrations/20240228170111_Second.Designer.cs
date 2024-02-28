@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Putting_Things_First_1_12.Models;
 
@@ -10,9 +11,11 @@ using Putting_Things_First_1_12.Models;
 namespace Putting_Things_First_1_12.Migrations
 {
     [DbContext(typeof(EnterTaskContext))]
-    partial class EnterTaskContextModelSnapshot : ModelSnapshot
+    [Migration("20240228170111_Second")]
+    partial class Second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
