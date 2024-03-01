@@ -8,73 +8,83 @@ namespace Putting_Things_First_1_12.Controllers
 {
     public class HomeController : Controller
     {
-        private EnterTaskContext _context; // make context usable
+        //private EnterTaskContext _context; // make context usable
 
-        public HomeController(EnterTaskContext temp) // make context usable
+        //public HomeController(EnterTaskContext temp) // make context usable
+        //{
+        //    _context = temp;
+        //}
+
+        private ITasksRepository _repo;
+
+        public HomeController(ITasksRepository temp)
         {
-            _context = temp;
+            _repo = temp;
         }
 
         public IActionResult Quadrant()
         {
-            var tasks = _context.Tasks
-                .Where(b => b.Completed==false)
-                .Include(x => x.Category)
+            var tasks = _repo.Tasks
                 .ToList();
+
             return View(tasks);
+
         }
 
         public IActionResult NewTask()
         {
-            ViewBag.Categories = _context.Categories.ToList(); // pass categories table so they can be listed in the dropdown
+            ViewBag.Categories = _repo.Categories.ToList();
+
             return View();
-        }
-
-        public IActionResult Update(int id)
-        {
-            var taskToEdit = _context.Tasks
-                .Single(x => x.TaskId == id);
-
-            ViewBag.Categories = _context.Categories.ToList();
-
-            return View("NewTask", taskToEdit);
-        }
-
-        [HttpPost]
-        public IActionResult Update(TaskEntry t)
-        {
-            _context.Update(t);
-            _context.SaveChanges();
-
-            return RedirectToAction("Quadrant");
         }
 
         [HttpPost]
         public IActionResult NewTask(TaskEntry t)
         {
-            _context.Update(t);
-            _context.SaveChanges();
+            _repo.Add(t);
+
+            return RedirectToAction("Quadrant");
+        }
+
+        public IActionResult Update(int id)
+        {
+            TaskEntry update = _repo.Update(id);
+
+            ViewBag.Categories = _repo.Categories.ToList();
+
+            return View("NewTask", update);
+        }
+
+        [HttpPost]
+        public IActionResult Update(TaskEntry t)
+        {
+            _repo.Update(t);
 
             return RedirectToAction("Quadrant");
         }
 
         public IActionResult Delete(int id)
         {
-            var taskToDelete = _context.Tasks
-                .Where(x => x.TaskId == id)
-                .FirstOrDefault();
+            TaskEntry delete = _repo.Delete(id);
 
-            return View(taskToDelete);
+            return View(delete);
         }
 
         [HttpPost]
-        public IActionResult Delete(TaskEntry task)
+        public IActionResult Delete(TaskEntry t)
         {
-            _context.Tasks.Remove(task);
-            _context.SaveChanges();
-
+            _repo.Delete(t);
             return RedirectToAction("Quadrant");
         }
+
+        //[HttpPost]
+        //public IActionResult Delete(TaskEntry task)
+        //{
+        //    _context.Tasks.Remove(task);
+        //    _context.SaveChanges();
+
+        //    return RedirectToAction("Quadrant");
+        //}
 
     }
 }
